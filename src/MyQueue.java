@@ -1,26 +1,26 @@
 import java.util.ArrayList;
 
-public class MyStack<T> implements StackInterface<T>
+public class MyQueue <E> implements QueueInterface<E>
 {
-    private ArrayList<T> yay = new ArrayList<>();
+    public ArrayList<E> yay = new ArrayList<>();
 
     @Override
-    public void push(T o)
+    public void offer(E o)
     {
         yay.add(o);
     }
     @Override
-    public T peek()
+    public E element()
     {
-        return yay.get(yay.size()-1);
+        return yay.get(0);
     }
     @Override
-    public T pop()
+    public E poll()
     {
-        return yay.removeLast();
+        return yay.remove(0);
     }
     @Override
-    public T get(int x)
+    public E get(int x)
     {
         return yay.get(x);
     }

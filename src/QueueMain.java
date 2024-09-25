@@ -6,7 +6,7 @@ public class QueueMain
 		Scanner keyboard= new Scanner(System.in);
 
 		int choice;
-		/*MyQueue<Integer> queue= new MyQueue<Integer>();
+		MyQueue<Integer> queue= new MyQueue<Integer>();
 
 		do
 		{
@@ -58,6 +58,6 @@ public class QueueMain
 
 		}while(choice<9);
 
-		System.out.print("\tGood Bye");*/
+		System.out.print("\tGood Bye");
 	}
 }
