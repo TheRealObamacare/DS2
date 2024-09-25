@@ -17,6 +17,6 @@ public class ToH
     }
     public static void printPoles(StackInterface<Integer> pole1,StackInterface<Integer> pole2, StackInterface<Integer> pole3)
     {
-        System.out.printf(pole1.toString() + pole2.toString() + pole3.toString());
+        System.out.printf(pole1.toString() + pole2.toString() + pole3.toString());//25 dashes
     }
 }
