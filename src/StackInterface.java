@@ -1,3 +1,4 @@
+
 public interface StackInterface<E>
 {
     public void push(E o);

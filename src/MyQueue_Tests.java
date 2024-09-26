@@ -24,7 +24,7 @@ public class MyQueue_Tests {
         allowedImports.add("java.util.ArrayList");
     }
 
-    @Test(timeout = 2000)
+    @Test(timeout = 250)
     public void checkImports() throws Exception{
         String className = "MyQueue";
         String fileName = "src/"+generateClassName(className).replaceAll("\\.","/")+".java";
@@ -65,7 +65,7 @@ public class MyQueue_Tests {
     }
 
     // is empty tests
-    @Test(timeout = 2000)
+    @Test(timeout = 250)
     public void test1() throws Exception {
         try
         {
@@ -81,7 +81,7 @@ public class MyQueue_Tests {
         }
     }
 
-    @Test(timeout = 2000)
+    @Test(timeout = 250)
     public void test2() throws Exception {
         try
         {
@@ -98,7 +98,7 @@ public class MyQueue_Tests {
         }
     }
 
-    @Test(timeout = 2000)
+    @Test(timeout = 250)
     public void test3() throws Exception {
         try
         {
@@ -118,7 +118,7 @@ public class MyQueue_Tests {
         }
     }
 
-    @Test(timeout = 2000)
+    @Test(timeout = 250)
     public void test4() throws Exception {
         try
         {
@@ -138,7 +138,7 @@ public class MyQueue_Tests {
     }
 
     // size
-    @Test(timeout = 2000)
+    @Test(timeout = 250)
     public void test5() throws Exception {
         try
         {
@@ -155,7 +155,7 @@ public class MyQueue_Tests {
         }
     }
 
-    @Test(timeout = 2000)
+    @Test(timeout = 250)
     public void test6() throws Exception {
         try
         {
@@ -174,7 +174,7 @@ public class MyQueue_Tests {
         }
     }
 
-    @Test(timeout = 2000)
+    @Test(timeout = 250)
     public void test7() throws Exception {
         try
         {
@@ -196,7 +196,7 @@ public class MyQueue_Tests {
         }
     }
 
-    @Test(timeout = 2000)
+    @Test(timeout = 250)
     public void test8() throws Exception {
         try
         {
@@ -221,7 +221,7 @@ public class MyQueue_Tests {
     }
 
     // peek tests
-    @Test(timeout = 2000)
+    @Test(timeout = 250)
     public void test9() throws Exception {
         try
         {
@@ -245,7 +245,7 @@ public class MyQueue_Tests {
     }
 
     // peek tests
-    @Test(timeout = 2000)
+    @Test(timeout = 250)
     public void test10() throws Exception {
         try
         {
@@ -267,7 +267,7 @@ public class MyQueue_Tests {
     }
 
     // poll tests
-    @Test(timeout = 2000)
+    @Test(timeout = 250)
     public void test11() throws Exception {
         try
         {
@@ -290,7 +290,7 @@ public class MyQueue_Tests {
         }
     }
 
-    @Test(timeout = 2000)
+    @Test(timeout = 250)
     public void test12() throws Exception {
         try
         {
@@ -316,7 +316,7 @@ public class MyQueue_Tests {
     }
 
     //toString
-    @Test(timeout = 2000)
+    @Test(timeout = 250)
     public void test13() throws Exception {
         try
         {
@@ -338,7 +338,7 @@ public class MyQueue_Tests {
         }
     }
 
-    @Test(timeout = 2000)
+    @Test(timeout = 250)
     public void test14() throws Exception {
         try
         {
