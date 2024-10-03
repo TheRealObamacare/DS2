@@ -21,36 +21,29 @@ public class ToH
             yay.pole1.push(i);
         zeros(yay.pole1, yay.pole2, yay.pole3, x+2);
         printPoles(yay.pole1, yay.pole2, yay.pole3, x);
+        System.out.println("Enter the pole you would like to move from (1-3):");
+        int from = kb.nextInt();
+        System.out.println("Enter the pole you would like to move to (1-3):");
+        int to = kb.nextInt();
         do {
-            System.out.println("Enter the pole you would like to move from (1-3):");
-            int from = kb.nextInt();
-            System.out.println("Enter the pole you would like to move to (1-3):");
-            int to = kb.nextInt();
-            while(from < 1 || from > 3 || to < 1 || to > 3)
-            {
-                System.out.println("Invalid pole, please try again.");
+            do {
                 System.out.println("Enter the pole you would like to move from (1-3):");
                 from = kb.nextInt();
                 System.out.println("Enter the pole you would like to move to (1-3):");
                 to = kb.nextInt();
+                
+                if(from < 1 || from > 3 || to < 1 || to > 3) {
+                    System.out.println("Invalid pole, please try again.");
+                }
+            } while(from < 1 || from > 3 || to < 1 || to > 3);
+            if (!moveDisk(yay.getPole(from), yay.getPole(to))) {
+                System.out.println("Invalid move, please try again.");
+            } else {
+                printPoles(yay.pole1, yay.pole2, yay.pole3, x);
             }
-            do {
-                if(!moveDisk(yay.pole1, yay.pole2))
-                    System.out.println("Invalid move, please try again.");
-                else if(!moveDisk(yay.pole1, yay.pole3))
-                    System.out.println("Invalid move, please try again.");
-                else if(!moveDisk(yay.pole2, yay.pole1))
-                    System.out.println("Invalid move, please try again.");
-                else if(!moveDisk(yay.pole2, yay.pole3))
-                    System.out.println("Invalid move, please try again.");
-                else if(!moveDisk(yay.pole3, yay.pole1))
-                    System.out.println("Invalid move, please try again.");
-                else if(!moveDisk(yay.pole3, yay.pole2))
-                    System.out.println("Invalid move, please try again.");
-            }while(!moveDisk(yay.pole1, yay.pole2) && !moveDisk(yay.pole1, yay.pole3) && !moveDisk(yay.pole2, yay.pole1) && !moveDisk(yay.pole2, yay.pole3) && !moveDisk(yay.pole3, yay.pole1) && !moveDisk(yay.pole3, yay.pole2));
-            zeros(yay.pole1, yay.pole2, yay.pole3, x+2);
-            printPoles(yay.pole1, yay.pole2, yay.pole3, x);
-        }while(isWinner(yay.pole3, x) == false);
+        } while (!isWinner(yay.pole3, x));
+        zeros(yay.pole1, yay.pole2, yay.pole3, x+2);
+        printPoles(yay.pole1, yay.pole2, yay.pole3, x);
     }
     public static void zeros(StackInterface<Integer> pole1,StackInterface<Integer> pole2, StackInterface<Integer> pole3, int x)
     {
@@ -66,10 +59,10 @@ public class ToH
         for(int i = pole1.size(); i > 0; i--)
             if(pole1.peek() == 0)
                 pole1.pop();
-        for(int i = pole1.size(); i > 0; i--)
+        for(int i = pole2.size(); i > 0; i--)
             if(pole2.peek() == 0)
                 pole2.pop();
-        for(int i = pole1.size(); i > 0; i--)
+        for(int i = pole3.size(); i > 0; i--)
             if(pole3.peek() == 0)
                 pole3.pop();
     }
@@ -95,15 +88,42 @@ public class ToH
         spaces = " ".repeat(6 - pole.get(i));
         return spaces + disk + spaces;
     }
-    public static boolean moveDisk(StackInterface<Integer> pole1, StackInterface<Integer> pole2)
-    {
-        if (pole1.isEmpty() || (!pole2.isEmpty() && pole1.peek() > pole2.peek()))
+    public static boolean moveDisk(StackInterface<Integer> from, StackInterface<Integer> to) {
+        while (!from.isEmpty() && from.peek() == 0) {
+            from.pop();
+        }
+        while (!to.isEmpty() && to.peek() == 0) {
+            to.pop();
+        }
+        if (from.isEmpty()) {
+            System.out.println("Cannot move from an empty pole.");
             return false;
-        pole2.push(pole1.pop());
+        }
+        if (!to.isEmpty() && from.peek() > to.peek()) {
+            System.out.println("Cannot place a larger disk on a smaller one.");
+            return false;
+        }
+        to.push(from.pop());
         return true;
     }
-    public static boolean isWinner(StackInterface<Integer> pole3, int x)
-    {
-        return pole3.size() == x;
+    public static boolean isWinner(StackInterface<Integer> pole3, int numDisks) {
+        if (pole3.size() != numDisks) {
+            return false; 
+        }
+        
+        StackInterface<Integer> poleCopy = (StackInterface<Integer>) pole3;
+        for (int i = 1; i <= numDisks; i++) {
+            if (poleCopy.pop() != i) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public StackInterface<Integer> getPole(int poleNumber) {
+        if (poleNumber == 1)
+            return this.pole1;
+        else if (poleNumber == 2)
+            return this.pole2;
+        return this.pole3;
     }
 }

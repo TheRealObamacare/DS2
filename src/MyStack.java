@@ -17,7 +17,7 @@ public class MyStack<T> implements StackInterface<T>
     @Override
     public T pop()
     {
-        return yay.removeLast();
+        return yay.remove(yay.size()-1);
     }
     @Override
     public T get(int x)
