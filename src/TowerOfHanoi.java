@@ -5,6 +5,7 @@ public class TowerOfHanoi
     StackInterface<Integer> pole1 = new MyStack<>();
     StackInterface<Integer> pole2 = new MyStack<>();
     StackInterface<Integer> pole3 = new MyStack<>();
+    int turnCount = 0; 
     public static void main(String[] args) {
         TowerOfHanoi yay = new TowerOfHanoi();
         int x = 0;
@@ -29,20 +30,26 @@ public class TowerOfHanoi
                 from = kb.nextInt();
                 System.out.println("Enter your to pole (1-3):");
                 to = kb.nextInt();
-                if(from > 1 && from < 3 || to >= 1 && to <= 3)
+                if((from >= 1 && from <= 3) && (to >= 1 && to <= 3) && (from != to))
                     break;
                 else
                     System.out.println("\tInvalid Move.");
-            } while(from < 1 || from > 3 || to < 1 || to > 3);
+            } while(true);
             if (!moveDisk(yay.getPole(from), yay.getPole(to))) {
                 System.out.println("\tInvalid Move.");
             } else {
-                zeros(yay.pole1, yay.pole2, yay.pole3, x+2);
+                yay.turnCount++;
                 printPoles(yay.pole1, yay.pole2, yay.pole3, x);
             }
         } while (!isWinner(yay.pole3, x));
-        zeros(yay.pole1, yay.pole2, yay.pole3, x+2);
-        printPoles(yay.pole1, yay.pole2, yay.pole3, x);
+        if (x == 3)
+            System.out.printf("Congratulations you solved 3 disks in %d moves. A perfect solutions is 7 moves.", yay.turnCount);
+        else if (x == 4)
+            System.out.printf("Congratulations you solved 4 disks in %d moves. A perfect solutions is 15 moves.", yay.turnCount);
+        else if (x == 5)
+            System.out.printf("Congratulations you solved 5 disks in %d moves. A perfect solutions is 31 moves.",  yay.turnCount);
+        else if (x == 6)
+            System.out.printf("Congratulations you solved 6 disks in %d moves. A perfect solutions is 63 moves.", yay.turnCount);
     }
     public static void zeros(StackInterface<Integer> pole1,StackInterface<Integer> pole2, StackInterface<Integer> pole3, int x)
     {
@@ -67,13 +74,22 @@ public class TowerOfHanoi
     }
     public static void printPoles(StackInterface<Integer> pole1,StackInterface<Integer> pole2, StackInterface<Integer> pole3, int x)
     {
+        zeros(pole1, pole2, pole3, x+2);
+        if (x == 3)
+            System.out.println("    -       -       -    \n" + "    -       -       -    ");
+        else if (x == 4)
+            System.out.println("     -         -         -     \n" + "     -         -         -     ");
+        else if(x == 5)
+            System.out.println("      -           -           -      \n" + "      -           -           -      ");
+        else
+            System.out.println("       -             -             -       \n" + "       -             -             -       ");
         String s = "";
         for(int i = x - 1; i >= 0; i--)
         {
             s = (" " + printHelper(pole1, i, x*2+1) + " " + printHelper(pole2, i, x*2+1) + " " + printHelper(pole3, i, x*2+1) + " ");
             System.out.println(s);
         }
-        System.out.println("-".repeat(s.length()));
+        System.out.println("-".repeat(s.length()) + "\n");
         removeZeros(pole1, pole2, pole3);
     }
     public static String printHelper(StackInterface<Integer> pole, int i, int len)
